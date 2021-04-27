@@ -16,8 +16,13 @@ class CollegeModel{
     }
 
     function retreiveAllwhere($id):array {
-        $res = $this->conn->query("SELECT * FROM colleges WHERE ID = $id ");
-        return $res->fetch(PDO::FETCH_ASSOC);
+        //' or 1 order by id desc;#' sql injection testing in query 
+        // $res = $this->conn->query("SELECT * FROM colleges WHERE ID = $id ");
+
+        $stmt = $this->conn->prepare("SELECT * FROM colleges WHERE ID =:id");
+        $stmt->execute(array(":id" => $id));
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     function update($collegename, $collegeaddress, $collegephone, $whereId){
@@ -28,7 +33,9 @@ class CollegeModel{
         $this->conn->query("DELETE FROM colleges");
     }
 
-    function deleteWhere($cid){
-        $this->conn->query("DELETE FROM colleges WHERE ID = $cid");
+    function deleteWhere($id){
+        // $this->conn->query("DELETE FROM colleges WHERE ID = $cid");
+        $stmt = $this->conn->prepare("DELETE FROM colleges WHERE ID =:id");
+        $stmt->execute(array(":id" => $id));
     }
 }

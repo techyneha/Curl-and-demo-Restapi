@@ -18,7 +18,10 @@ class CourseModel{
     }
 
     function retreiveAllwhere($code):array {
-        $res = $this->conn->query("SELECT * FROM course WHERE CODE = $code");
+
+        // $res = $this->conn->query("SELECT * FROM course WHERE CODE = $code");
+        $res = $this->conn->prepare("SELECT * FROM course WHERE CODE =:code");
+        $res->execute([":code"=> $code]);
         return $res->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -31,7 +34,9 @@ class CourseModel{
     }
 
     function deleteWhere($code){
-        $this->conn->query("DELETE FROM course WHERE CODE = $code");
+        // $this->conn->query("DELETE FROM course WHERE CODE = $code");
+        $stmt = $this->conn->prepare("DELETE FROM course WHERE CODE =:code");
+        $stmt->execute(array(":code"=> $code));
     }
 }
 
