@@ -1,0 +1,7 @@
+### Rewrite(convert) the url before processing
+RewriteEngine on
+
+#api/colleges/400
+
+RewriteRule ^api/colleges/?(.*)$ index.php?resourceString=CollegeController?params=$1 [NC]
+RewriteRule ^api/courses/?(.*)$ index.php?resourceString=CourseController?params=$1 [NC]

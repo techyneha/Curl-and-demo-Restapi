@@ -1,0 +1,30 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+body {
+	
+}
+header {
+	background: black;
+	padding: 16px;
+}
+
+header ul li {
+    display: inline;
+    margin-left: 5px;
+}
+
+li a {
+    color: white;
+    text-decoration: none;
+    float: right;
+    padding-right: 20px;
+}
+.b-body {
+	text-align: center;
+}
+.title {
+	padding:18px 0;
+	font-size: 25px;
+}
